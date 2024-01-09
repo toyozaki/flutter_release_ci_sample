@@ -12,6 +12,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dart-lang/setup-dart@v1
 
+      - name: Pull main branch
+        run: git pull origin main
+
       - name: Install gitflow-cjs
         run: curl -fsSlO https://raw.githubusercontent.com/CJ-Systems/gitflow-cjs/develop/contrib/gitflow-installer.sh && sudo bash gitflow-installer.sh install stable; rm gitflow-installer.sh
 
