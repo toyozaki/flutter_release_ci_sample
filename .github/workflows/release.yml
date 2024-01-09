@@ -17,5 +17,5 @@ jobs:
       - name: Install cider
         run: pub global activate cider
 
-    #   - name: Release a new version
-    #     run: make release
+      - name: Release a new version
+        run: make release
