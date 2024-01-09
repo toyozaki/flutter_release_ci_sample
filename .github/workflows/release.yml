@@ -10,10 +10,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: dart-lang/setup-dart@v1
+        with:
+          fetch-depth: 0
 
-      - name: Fetch main branch
-        run: git fetch origin main
+      - uses: dart-lang/setup-dart@v1
 
       - name: Install gitflow-cjs
         run: curl -fsSlO https://raw.githubusercontent.com/CJ-Systems/gitflow-cjs/develop/contrib/gitflow-installer.sh && sudo bash gitflow-installer.sh install stable; sudo rm -rf gitflow*
