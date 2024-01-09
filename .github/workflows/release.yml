@@ -22,4 +22,6 @@ jobs:
         run: dart pub global activate cider
 
       - name: Release a new version
-        run: make release
+        run: |
+          git config --global gitflow.branch.master "main"
+          make release
