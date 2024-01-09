@@ -1,13 +1,14 @@
+OSTYPE := $(shell uname -s)
 VERSION := $(shell date +%y.%m).$(shell echo "10 * ( $(shell grep "\#\# \[$(shell date +%y.%m)" CHANGELOG.md | wc -l) + 1)" | bc)
 
 .PHONY: release
 release:
 	git flow init -d -f
 	git flow release start $(VERSION)
-	if [[ "$OSTYPE" == "darwin"* ]]; then
-		sed -i '' -e "s/version: .*/version: $(VERSION)/g" pubspec.yaml 
-	else
-		sed -i -e "s/version: .*/version: $(VERSION)/g" pubspec.yaml 
+	@if test $(OSTYPE) = "Darwin" ; then\
+		sed -i '' -e "s/version: .*/version: $(VERSION)/g" pubspec.yaml;\
+	else\
+		sed -i -e "s/version: .*/version: $(VERSION)/g" pubspec.yaml;\
 	fi
 	cider release
 	git add .
