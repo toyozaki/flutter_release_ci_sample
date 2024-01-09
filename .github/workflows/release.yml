@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Install gitflow-cjs
-        run: curl -fsSlO https://raw.githubusercontent.com/CJ-Systems/gitflow-cjs/develop/contrib/gitflow-installer.sh && sudo bash gitflow-installer.sh install stable; rm gitflow-installer.sh
+        run: curl -fsSlO https://raw.githubusercontent.com/CJ-Systems/gitflow-cjs/develop/contrib/gitflow-installer.sh && bash gitflow-installer.sh install stable; rm gitflow-installer.sh
 
       - name: Install cider
         run: pub global activate cider
