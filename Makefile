@@ -1,4 +1,4 @@
-VERSION := $(shell date +%y.%m).$(shell bc -e "10 * ( $(shell grep "\#\# \[$(shell date +%y.%m)" CHANGELOG.md | wc -l) + 1)")
+VERSION := $(shell date +%y.%m).$(shell echo "10 * ( $(shell grep "\#\# \[$(shell date +%y.%m)" CHANGELOG.md | wc -l) + 1)" | bc)
 
 .PHONY: release
 release:
