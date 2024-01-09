@@ -1,0 +1,29 @@
+name: Release a new version
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Release a new version
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+
+      - name: Fetch main branch
+        run: git fetch origin main
+
+      - name: Install gitflow-cjs
+        run: curl -fsSlO https://raw.githubusercontent.com/CJ-Systems/gitflow-cjs/develop/contrib/gitflow-installer.sh && sudo bash gitflow-installer.sh install stable; sudo rm -rf gitflow*
+
+      - name: Install cider
+        run: dart pub global activate cider
+
+      - name: Release a new version
+        run: |
+          git config --global user.name "action@github.com"
+          git config --global user.email "65916846+actions-user@users.noreply.github.com"
+          git config --global gitflow.branch.master "main"
+          make release
