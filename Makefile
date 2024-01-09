@@ -1,7 +1,7 @@
-VERSION := $(shell date +%y.%m).$(shell bc -e "10 * ( $(shell grep "$(shell date +%y.%m)" CHANGELOG.md | wc -l) + 1)")
+VERSION := $(shell date +%y.%m).$(shell bc -e "10 * ( $(shell grep "\#\# \[$(shell date +%y.%m)" CHANGELOG.md | wc -l) + 1)")
 
 .PHONY: release
-bump:
+release:
 	git flow init -d -f
 	git flow release start $(VERSION)
 	sed -i '' -e "s/version: .*/version: $(VERSION)/g" pubspec.yaml 
