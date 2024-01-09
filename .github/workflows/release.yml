@@ -7,10 +7,11 @@ jobs:
   release:
     name: Release a new version
     runs-on: ubuntu-latest
-    container:
-      image: dart:stable
 
     steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+
       - name: Install gitflow-cjs
         run: curl -fsSlO https://raw.githubusercontent.com/CJ-Systems/gitflow-cjs/develop/contrib/gitflow-installer.sh && bash gitflow-installer.sh install stable; rm gitflow-installer.sh
 
