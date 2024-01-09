@@ -7,6 +7,7 @@ jobs:
   release:
     name: Release a new version
     runs-on: ubuntu-latest
+    if: contains('["toyozaki"]', github.actor)
 
     steps:
       - uses: actions/checkout@v4
@@ -23,8 +24,8 @@ jobs:
 
       - name: Release a new version
         run: |
-          git config --global user.name "action@github.com"
-          git config --global user.email "65916846+actions-user@users.noreply.github.com"
+          git config --global user.name "toyozaki"
+          git config --global user.email "61676668+toyozaki@users.noreply.github.com"
           git config --global gitflow.branch.master "main"
           make release
           git push origin main
