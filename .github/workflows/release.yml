@@ -1,0 +1,21 @@
+name: Release a new verwsion
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Release a new version
+    runs-on: ubuntu-latest
+    container:
+      image: dart:stable
+
+    steps:
+      - name: Install gitflow-cjs
+        run: curl -fsSlO https://raw.githubusercontent.com/CJ-Systems/gitflow-cjs/develop/contrib/gitflow-installer.sh && sudo bash gitflow-installer.sh install stable; rm gitflow-installer.sh
+
+      - name: Install cider
+        run: pub global activate cider
+
+    #   - name: Release a new version
+    #     run: make release
