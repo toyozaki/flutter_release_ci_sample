@@ -4,7 +4,11 @@ VERSION := $(shell date +%y.%m).$(shell echo "10 * ( $(shell grep "\#\# \[$(shel
 release:
 	git flow init -d -f
 	git flow release start $(VERSION)
-	sed -i '' -e "s/version: .*/version: $(VERSION)/g" pubspec.yaml 
+	if [[ "$OSTYPE" == "darwin"* ]]; then
+		sed -i '' -e "s/version: .*/version: $(VERSION)/g" pubspec.yaml 
+	else
+		sed -i -e "s/version: .*/version: $(VERSION)/g" pubspec.yaml 
+	fi
 	cider release
 	git add .
 	git commit -m 'Bump version to $(VERSION)'
