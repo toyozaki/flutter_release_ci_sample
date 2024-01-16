@@ -1,3 +1,7 @@
+## [24.01.70] - 2024-01-17
+### Added
+- Test hotfix
+
 ## [24.01.60] - 2024-01-09
 ## [24.01.50] - 2024-01-09
 ## [24.01.40] - 2024-01-09
@@ -10,6 +14,7 @@
 ### Added
 - Hello, world
 
+[24.01.70]: https://github.com/toyozaki/flutter_release_ci_sample/compare/24.01.60...24.01.70
 [24.01.60]: https://github.com/toyozaki/flutter_release_ci_sample/compare/24.01.50...24.01.60
 [24.01.50]: https://github.com/toyozaki/flutter_release_ci_sample/compare/24.01.40...24.01.50
 [24.01.40]: https://github.com/toyozaki/flutter_release_ci_sample/compare/24.01.30...24.01.40
