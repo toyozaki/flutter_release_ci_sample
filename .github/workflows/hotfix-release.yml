@@ -37,4 +37,6 @@ jobs:
           make hotfix-release
           git push origin --tags
           CURRENT_VERSION=$(make current-version)
-          gh pr create --base "hotfix/$CURRENT_VERSION" --head main --title "hotfix/$CURRENT_VERSION -> develop" --body "hotfix/$CURRENT_VERSION -> develop"
+          gh pr create --base "$CURRENT_VERSION" --head main --title "hotfix/$CURRENT_VERSION -> develop" --body "hotfix/$CURRENT_VERSION -> develop"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
