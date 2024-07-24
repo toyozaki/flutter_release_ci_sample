@@ -1,0 +1,40 @@
+name: Release a new version for hotfix
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+
+jobs:
+  release:
+    name: Release a new version for hotfix
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup ssh
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: Release a new version for hotfix
+        run: |
+          eval $(ssh-agent -s)
+          ssh-add ~/.ssh/id_rsa
+          git config --global user.name "action@github.com"
+          git config --global user.email "65916846+actions-user@users.noreply.github.com"
+          git config --global gitflow.branch.master "main"
+          git remote set-url origin git@github.com/toyozaki/flutter_release_ci_sample.git
+          make hotfix-release
+          git push origin --tags
+          CURRENT_VERSION=$(make current-version)
+          gh pr create --base "hotfix/$CURRENT_VERSION" --head main --title "hotfix/$CURRENT_VERSION -> develop" --body "hotfix/$CURRENT_VERSION -> develop"
