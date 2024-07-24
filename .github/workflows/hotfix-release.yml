@@ -39,6 +39,6 @@ jobs:
           CURRENT_VERSION=$(make current-version)
           git checkout -b hotfix/$CURRENT_VERSION
           git push origin hotfix/$CURRENT_VERSION
-          gh pr create --base "hotfix/$CURRENT_VERSION" --head main --title "hotfix/$CURRENT_VERSION -> develop" --body "hotfix/$CURRENT_VERSION -> develop"
+          gh pr create --base "hotfix/$CURRENT_VERSION" --head develop --title "hotfix/$CURRENT_VERSION -> develop" --body "hotfix/$CURRENT_VERSION -> develop"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
