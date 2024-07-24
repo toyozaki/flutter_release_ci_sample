@@ -39,7 +39,6 @@ jobs:
           CURRENT_VERSION=$(make current-version)
           git checkout -b hotfix/$CURRENT_VERSION
           git push origin hotfix/$CURRENT_VERSION
-          hotfix を develop にマージ
           gh pr create --base develop --head "hotfix/$CURRENT_VERSION" --title "hotfix/$CURRENT_VERSION -> develop" --body "hotfix/$CURRENT_VERSION -> develop"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
