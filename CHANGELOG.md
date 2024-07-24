@@ -1,3 +1,4 @@
+## [24.07.60] - 2024-07-24
 ## [24.07.50] - 2024-07-24
 ## [24.07.40] - 2024-07-24
 ## [24.07.30] - 2024-07-24
@@ -19,6 +20,7 @@
 ### Added
 - Hello, world
 
+[24.07.60]: https://github.com/toyozaki/flutter_release_ci_sample/compare/24.07.50...24.07.60
 [24.07.50]: https://github.com/toyozaki/flutter_release_ci_sample/compare/24.07.40...24.07.50
 [24.07.40]: https://github.com/toyozaki/flutter_release_ci_sample/compare/24.07.30...24.07.40
 [24.07.30]: https://github.com/toyozaki/flutter_release_ci_sample/compare/24.07.20...24.07.30
