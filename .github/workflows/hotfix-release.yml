@@ -13,14 +13,9 @@ jobs:
     if: github.event.pull_request.merged == true
 
     steps:
-      # Calculate the number of commits in the pull request
-      - run: echo "fetch_depth=$(( commits + 1 ))" >> $GITHUB_ENV
-        env:
-          commits: ${{ github.event.pull_request.commits }}
-
       - uses: actions/checkout@v4
         with:
-          fetch-depth: ${{ env.fetch_depth }}
+          fetch-depth: 0
 
       - name: Setup ssh
         env:
@@ -44,6 +39,7 @@ jobs:
           CURRENT_VERSION=$(make current-version)
           git checkout -b hotfix/$CURRENT_VERSION
           git push origin hotfix/$CURRENT_VERSION
-          gh pr create --base "hotfix/$CURRENT_VERSION" --head develop --title "hotfix/$CURRENT_VERSION -> develop" --body "hotfix/$CURRENT_VERSION -> develop"
+          hotfix を develop にマージ
+          gh pr create --base develop --head "hotfix/$CURRENT_VERSION" --title "hotfix/$CURRENT_VERSION -> develop" --body "hotfix/$CURRENT_VERSION -> develop"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
