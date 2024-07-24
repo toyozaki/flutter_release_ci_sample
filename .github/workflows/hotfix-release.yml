@@ -33,7 +33,7 @@ jobs:
           git config --global user.name "action@github.com"
           git config --global user.email "65916846+actions-user@users.noreply.github.com"
           git config --global gitflow.branch.master "main"
-          git remote set-url origin git@github.com/toyozaki/flutter_release_ci_sample.git
+          git remote set-url origin git@github.com:toyozaki/flutter_release_ci_sample.git
           make hotfix-release
           git push origin --tags
           CURRENT_VERSION=$(make current-version)
